@@ -38,38 +38,36 @@
         <div class="mb-3">
           <label for="startyear" class="form-label">Start Year</label>
           <select id="startyear">
-            <option value="-1">Year</option>
           </select>
         </div>
         <div class="mb-3">
           <label for="endyear" class="form-label">End Year</label>
           <select id="endyear">
-            <option value="-1">Year</option>
           </select>
         </div>
         <div class="form-check mb-3">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+          <input class="form-check-input" type="radio" value="CO-2 Emission" name="flexRadioDefault" id="flexRadioDefault1" checked>
           <label class="form-check-label" for="flexRadioDefault1">
             CO-2 Emissions
           </label>
         </div>
         <div class="form-check mb-3">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+          <input class="form-check-input" type="radio" value="Temperature Change" name="flexRadioDefault" id="flexRadioDefault2">
           <label class="form-check-label" for="flexRadioDefault2">
             Temperature Change
           </label>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button id="submitButton1" type="submit" class="btn btn-primary">Submit</button>
       </form>
       <hr>
       <form id="f2">
         <div class="mb-3">
           <h3>Economic Category</h3>
-          <input type="checkbox" id="income1" name="income1" value="high">
+          <input type="checkbox" id="income1" name="income" value="high income">
           <label for="income1">High Income</label><br>
-          <input type="checkbox" id="income2" name="income2" value="low">
+          <input type="checkbox" id="income2" name="income" value="low income">
           <label for="income2">Low Income</label><br>
-          <input type="checkbox" id="income3" name="income3" value="middle">
+          <input type="checkbox" id="income3" name="income" value="middle income">
           <label for="income3">Middle Income</label><br><br>
         </div>
         <div class="mb-3">
@@ -78,7 +76,7 @@
             <option value="-1">Year</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button id="submitButton2" type="submit" class="btn btn-primary">Submit</button>
       </form>
     
     <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
@@ -116,6 +114,49 @@
       // add the option element to the selectbox
       selectBox3.appendChild(option);
       }
+    </script>
+    <script>
+      document.getElementById('submitButton1').onclick = async function doSomething (event) {
+        try {
+          event.preventDefault();
+          var select1 = document.getElementById('startyear');
+          var year1 = select1.options[select1.selectedIndex].value;
+          var select2 = document.getElementById('endyear');
+          var year2 = select2.options[select2.selectedIndex].value;
+          var radio=document.getElementsByName('flexRadioDefault');
+          for(i = 0; i < radio.length; i++) {
+                if(radio[i].checked)
+                console.log('selected radio button: ',radio[i].value);
+          }
+          console.log('year1 is :', year1);
+          console.log('year2 is :', year2);
+          const response = await axios.get('http://localhost:3002/natural-disasters/melting-ice', { timeout: 100 });
+          console.log(JSON.stringify(response));
+          return response;
+        } catch (err) {
+          console.log(err);
+        }
+      };
+    </script>
+    <script>
+      document.getElementById('submitButton2').onclick = async function doSomething (event) {
+        try {
+          event.preventDefault();
+          var check=document.getElementsByName('income');
+          for(i = 0; i < check.length; i++) {
+                if(check[i].checked)
+                console.log('selected checkbox: ',check[i].value);
+          }
+          var select3 = document.getElementById('chooseyear');
+          var year3 = select3.options[select3.selectedIndex].value;
+          console.log('selected year: ',year3);
+          const response = await axios.get('http://localhost:3002/natural-disasters/melting-ice', { timeout: 100 });
+          console.log(JSON.stringify(response));
+          return response;
+        } catch (err) {
+          console.log(err);
+        }
+      };
     </script>
 </body>
 </html>

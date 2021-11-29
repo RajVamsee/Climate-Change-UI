@@ -60,7 +60,7 @@
             <option value="-1">Year</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
       </form>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
@@ -88,6 +88,36 @@
       // add the option element to the selectbox
       selectBox2.appendChild(option);
       }
+    </script>
+    <script>
+      document.getElementById('submitButton').onclick = async function doSomething (event) {
+        try {
+          event.preventDefault();
+          var select1 = document.getElementById('startyear');
+          var year1 = select1.options[select1.selectedIndex].value;
+          var select2 = document.getElementById('endyear');
+          var year2 = select2.options[select2.selectedIndex].value;
+          var lata1=document.getElementById('lata1');
+          var lata1value=lata1.value;
+          console.log('latitude a1 is: ',lata1value);
+          var lata2=document.getElementById('lata2');
+          var lata2value=lata2.value;
+          console.log('latitude a2 is: ',lata2value);
+          var latb1=document.getElementById('latb1');
+          var latb1value=latb1.value;
+          console.log('latitude b1 is: ',latb1value);
+          var latb2=document.getElementById('latb2');
+          var latb2value=latb2.value;
+          console.log('latitude b2 is: ',latb2value);
+          console.log('year1 is :', year1);
+          console.log('year2 is :', year2);
+          const response = await axios.get('http://localhost:3002/natural-disasters/melting-ice', { timeout: 100 });
+          console.log(JSON.stringify(response));
+          return response;
+        } catch (err) {
+          console.log(err);
+        }
+      };
     </script>
 </body>
 </html>
