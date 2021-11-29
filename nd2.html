@@ -30,19 +30,72 @@
         </div>
       </nav>
 
-      <div class="container">
-          <div class="row row-content align-items-center">
-              <div class="col col-12 col-sm-5">
-                <div class="btn-group-vertical btn-lg">
-                    
-                </div>
-              </div>
-          </div>
-      </div>
+      <header class="jumbotron">
+        <h2>Frequency Of Natural Disasters</h2>
+      </header>
 
+      <form>
+        <div class="mb-3">
+          <label for="startyear" class="form-label">Start Year</label>
+          <select id="startyear">
+            <option value="-1">Year</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="endyear" class="form-label">End Year</label>
+          <select id="endyear">
+            <option value="-1">Year</option>
+          </select>
+        </div>
+        <div class="mb-3">
+            <label for="disastertype">Choose type of disaster(s):</label>
+            <select name="disastertype" id="disastertype" multiple>
+              <option value="forestfires">Forest Fires</option>
+              <option value="floods">Floods</option>
+              <option value="hurricanes">Hurricanes</option>
+              <option value="droughts">Droughts</option>
+            </select>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+          <label class="form-check-label" for="flexRadioDefault1">
+            Bar Graph
+          </label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+          <label class="form-check-label" for="flexRadioDefault2">
+            Line Graph
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      
     <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
     <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+      var selectBox1 = document.getElementById('startyear');
+      var selectBox2 = document.getElementById('endyear');
+      for (var i = 1900; i <= 2009; i++) {
+      // create option element
+      var option = document.createElement('option');
+      // add value and text name
+      option.value = i;
+      option.innerHTML = i;
+      // add the option element to the selectbox
+      selectBox1.appendChild(option);
+      }
+      for (var i = 1900; i <= 2009; i++) {
+      // create option element
+      var option = document.createElement('option');
+      // add value and text name
+      option.value = i;
+      option.innerHTML = i;
+      // add the option element to the selectbox
+      selectBox2.appendChild(option);
+      }
+    </script>
 </body>
 </html>

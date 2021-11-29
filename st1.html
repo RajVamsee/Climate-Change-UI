@@ -24,31 +24,56 @@
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="./index.html"><span class="fa fa-home fa-lg"></span> Home</a>
             <a class="nav-item nav-link" href="./co2.html">CO2 Emission</a>
-            <a class="nav-item nav-link active" href="./st.html">Surface Temperature</a>
+            <a class="nav-item nav-link" href="./st.html">Surface Temperature</a>
             <a class="nav-item nav-link" href="./nd.html">Natural Disasters</a>
         </div>
       </nav>
 
       <header class="jumbotron">
-        <h2>Trends related to surface temperature</h2>
+        <h2>Temperature Change On Countries</h2>
       </header>
 
-      <div class="container">
-        <div class="row row-content align-items-center">
-            <div class="col col-12 col-sm-5">
-              <div class="btn-group-vertical btn-lg">
-                  <button type="button" onclick="location.href='./st1.html'" class="btn btn-dark">Temperature Change On Countries</button>
-                  <button type="button" onclick="location.href='./st2.html'" class="btn btn-dark">Region-A Vs Region-B Comparision</button>
-              </div>
-            </div>
+      <form>
+        <div class="mb-3">
+          <label for="startyear" class="form-label">Start Year</label>
+          <select id="startyear">
+            <option value="-1">Year</option>
+          </select>
         </div>
-    </div>
-    
-    
+        <div class="mb-3">
+          <label for="endyear" class="form-label">End Year</label>
+          <select id="endyear">
+            <option value="-1">Year</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
     <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+      var selectBox1 = document.getElementById('startyear');
+      var selectBox2 = document.getElementById('endyear');
+      for (var i = 1851; i <= 2013; i++) {
+      // create option element
+      var option = document.createElement('option');
+      // add value and text name
+      option.value = i;
+      option.innerHTML = i;
+      // add the option element to the selectbox
+      selectBox1.appendChild(option);
+      }
+      for (var i = 1851; i <= 2013; i++) {
+      // create option element
+      var option = document.createElement('option');
+      // add value and text name
+      option.value = i;
+      option.innerHTML = i;
+      // add the option element to the selectbox
+      selectBox2.appendChild(option);
+      }
+    </script>
 </body>
 </html>
